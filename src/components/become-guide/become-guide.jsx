@@ -78,7 +78,6 @@ const BecomeGuide = ({}) => {
     sendFilteredRequestHandler();
   }, [currentPage, filterApply]);
 
-  console.log("totalItems", totalItems);
   return (
     <BasePage fixed={true} className={" bg-white px-0"}>
       {/* <BasePage fluid={"true"}  className={" bg-white px-0"}></BasePage> ------> fluid container */}
@@ -97,7 +96,7 @@ const BecomeGuide = ({}) => {
             setCurrentPage,
           }}
         />
-        {/* <PersonsCard {...{ userData, error }} /> */}
+        <PersonsCard {...{ userData, error }} />
         {/* {filterApply ? ( */}
           <Paginator
             {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}

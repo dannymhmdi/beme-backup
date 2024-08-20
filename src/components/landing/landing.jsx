@@ -47,18 +47,6 @@ const Landing = () => {
           </div>
           <Images />
           <LandigPart2 />
-          {/* <video
-            id="video_background"
-            preload="auto"
-            autoPlay={true}
-            loop={true}
-            muted
-            width="100%"
-            className="rounded-md my-6"
-            // playsInline=""
-          >
-            <source src="./videos/promo.mp4" type="video/mp4" />
-          </video> */}
           <Suspense fallback={'loading video'}>
           <VideoTeaser/>
           </Suspense>
