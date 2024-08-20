@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./dialogButton.module.css";
 import CategoriFilterBox from "../categori-filter-box/CategoriFilterBox";
 import { Button } from "@mui/material";
-const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilterApply ,setCurrentPage ,setIsLoading}) => {
+const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilterApply ,setCurrentPage }) => {
   const [showFilterBox, setShowFilterBox] = useState(false);
   const [showDateBox, setShowDateBox] = useState(false);
   const divRef = useRef(null);
@@ -54,7 +54,7 @@ const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilte
               close
             </span>
           </div>
-          <CategoriFilterBox {...{sendFilteredRequestHandler,setShowDateBox ,fields ,setFields ,setFilterApply ,setCurrentPage,setIsLoading}}/>
+          <CategoriFilterBox {...{sendFilteredRequestHandler,setShowDateBox ,fields ,setFields ,setFilterApply ,setCurrentPage}}/>
 
         </div>
         <div

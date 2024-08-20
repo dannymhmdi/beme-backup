@@ -6,6 +6,9 @@ import ExprienceSection from "./exprience-section";
 import LandigPart2 from "./landig-second-part";
 import PolicySection from "./policy-section";
 import { BasePage } from "../base-page";
+import { lazy } from "react";
+import { Suspense } from "react";
+const VideoTeaser = lazy(() => import('./VideoTeaser'))
 const Landing = () => {
   return (
     <>
@@ -44,7 +47,7 @@ const Landing = () => {
           </div>
           <Images />
           <LandigPart2 />
-          <video
+          {/* <video
             id="video_background"
             preload="auto"
             autoPlay={true}
@@ -55,7 +58,10 @@ const Landing = () => {
             // playsInline=""
           >
             <source src="./videos/promo.mp4" type="video/mp4" />
-          </video>
+          </video> */}
+          <Suspense fallback={'loading video'}>
+          <VideoTeaser/>
+          </Suspense>
         </>
       </BasePage>
       <ExprienceSection />

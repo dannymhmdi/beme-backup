@@ -1,7 +1,7 @@
 import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import React, { useState } from "react";
 import { names } from "@/dictionaries/fields-name";
-const CategoriFilterBox = ({sendFilteredRequestHandler ,setShowDateBox , fields ,setFields,setFilterApply,setCurrentPage,setIsLoading}) => {
+const CategoriFilterBox = ({sendFilteredRequestHandler ,setShowDateBox , fields ,setFields,setFilterApply,setCurrentPage}) => {
   // const [fields,setFields] = useState([])
  
   const fieldsChangeHnadler = (e) => {
@@ -46,7 +46,6 @@ const CategoriFilterBox = ({sendFilteredRequestHandler ,setShowDateBox , fields 
                 setFilterApply(prev => !prev)
                 setCurrentPage(1)
                 setShowDateBox(false)
-                setIsLoading(true)
                 console.log('fileds',fields)
               }}
             >

@@ -45,6 +45,7 @@ const BecomeGuide = ({}) => {
 
   const sendFilteredRequestHandler = async () => {
     const params = fields.length ? { fields, currentPage } : { currentPage };
+    setIsLoading(true)
     try {
       const response = await fetch(`http://localhost:3000/api/test-api`, {
         method: "POST",
@@ -94,20 +95,17 @@ const BecomeGuide = ({}) => {
             setFields,
             setFilterApply,
             setCurrentPage,
-            setIsLoading,
           }}
         />
-        <PersonsCard {...{ userData, error }} />
-        {filterApply ? (
+        {/* <PersonsCard {...{ userData, error }} /> */}
+        {/* {filterApply ? ( */}
           <Paginator
             {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
           />
-        ) : (
-          <Paginator
-            {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
-          />
-        )}
         <CardMui {...{ userData, error }} />
+        <Paginator
+            {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
+          />
       </MuiTheme>
     </BasePage>
   );

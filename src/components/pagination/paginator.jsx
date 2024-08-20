@@ -16,7 +16,7 @@ export const Paginator = ({
         key={item}
         onClick={() => {
           setCurrentPage(item);
-          setIsLoading(true);
+          // setIsLoading(true);
         }}
         className={`border px-2 py-0.5 ms-1 rounded-md ${
           item === currentPage ? "bg-teal-500 text-white" : "bg-white text-dark"

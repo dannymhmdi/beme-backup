@@ -3,7 +3,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
+// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
@@ -23,7 +23,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import { useState } from "react";
-
+import { Suspense } from "react";
+import Loading from "app/loading";
+const CardMedia = React.lazy(() => import("@mui/material/CardMedia"))
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   console.log("expand", expand);
@@ -88,15 +90,17 @@ export default function CardMui({ userData,error }) {
                       return (
                         <SwiperSlide key={`${i}-${j}`}>
                           <div className="w-full relative h-full">
-                            <CardMedia
+                          <Suspense fallback={<Loading/>}>
+                          <CardMedia
                               component={"img"}
                               height="194"
                               image={img}
                               alt={host.username}
                             />
-                            <span className="material-symbols-outlined">
+                          </Suspense>
+                            {/* <span className="material-symbols-outlined">
                               favorite
-                            </span>
+                            </span> */}
                           </div>
                         </SwiperSlide>
                       );
