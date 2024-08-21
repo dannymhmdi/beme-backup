@@ -125,16 +125,16 @@ export default function CardMui({ userData,error }) {
                     <IconButton aria-label="share">
                       <ShareIcon />
                     </IconButton>
-                    <ExpandMore
+                    {/* <ExpandMore
                       expand={openExpandCard}
                       onClick={() => handleExpandClick(i)}
                       aria-expanded={expanded}
                       aria-label="show more"
                     >
                       <ExpandMoreIcon />
-                    </ExpandMore>
+                    </ExpandMore> */}
                   </CardActions>
-                  <Collapse in={ openExpandCard && expanded == i} timeout="auto" unmountOnExit>
+                  {/* <Collapse in={ openExpandCard && expanded == i} timeout="auto" unmountOnExit>
                     <CardContent>
                       <Typography paragraph>Method:</Typography>
                       <Typography paragraph>
@@ -164,7 +164,7 @@ export default function CardMui({ userData,error }) {
                         don&apos;t open.)
                       </Typography>
                     </CardContent>
-                  </Collapse>
+                  </Collapse> */}
                 </Card>
               </div>
             );
