@@ -14,16 +14,22 @@ function ToastAlert({ message, error, setError, slideDirection, color }) {
       return {...prev,status:false}
     })
   };
+
+  if(error) setTimeout(() => {
+    setError((prev) => {
+      return {...prev,status:false}
+    })
+  }, 2000);
 console.log('error in toast',error)
   return (
     <div>
       <Snackbar
         open={error}
-        autoHideDuration={2000}
+        autoHideDuration={4000}
         TransitionComponent={Slide}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         // onClose={handleClose}
-        message="This Snackbar will be dismissed in 5 seconds."
+        // message="This Snackbar will be dismissed in 5 seconds."
       >
         <Alert
           onClose={handleClose}
