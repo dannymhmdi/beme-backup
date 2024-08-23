@@ -81,7 +81,7 @@ const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilte
           corporis quibusdam quis! filterBox
         </div>
         <button
-          className="text-white bg-green-600 px-5 py-2 rounded-lg ms-2"
+          className="text-white bg-teal-500 px-5 py-2 rounded-lg ms-2"
           onClick={() => {
             setShowDateBox(true);
             setShowFilterBox(false);
@@ -90,7 +90,7 @@ const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilte
           دسته بندی
         </button>
         <button
-          className="text-white bg-green-600 px-5 py-2 rounded-lg ms-2"
+          className="text-white bg-teal-500 px-5 py-2 rounded-lg ms-2"
           onClick={() => {
             setShowFilterBox(true);
             setShowDateBox(false);

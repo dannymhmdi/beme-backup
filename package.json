@@ -15,7 +15,6 @@
     "@mui/icons-material": "^5.15.2",
     "@mui/material": "^5.15.2",
     "@mui/material-nextjs": "^5.15.3",
-    "flowbite-react": "^0.7.5",
     "next": "14.0.4",
     "pg": "^8.11.5",
     "react": "^18",

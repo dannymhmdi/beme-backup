@@ -6,7 +6,7 @@ module.exports = {
     "./components/**/*.{html,js,ts,jsx,tsx,mdx}",
     "./app/**/*.{html,js,ts,jsx,tsx,mdx}",
     "./src/**/*.{html,js,ts,jsx,tsx,mdx}",,
-    "node_modules/flowbite-react/lib/esm/**/*.js",
+    // "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
     container: {
@@ -45,7 +45,7 @@ module.exports = {
       "login-btn":"#4568b2"
     },
   },
-  plugins: [
-    require("flowbite/plugin"),
-  ],
+  // plugins: [
+  //   require("flowbite/plugin"),
+  // ],
 };

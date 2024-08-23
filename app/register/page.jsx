@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { RegisterForm } from "@/components/register";
-import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
 
 const Register = () => {
