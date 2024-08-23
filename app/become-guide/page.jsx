@@ -6,7 +6,6 @@ const page = () => {
   return (
      <>
      <BecomeGuide></BecomeGuide>
-     {/* <Paginator/> */}
      </>
   )
 }

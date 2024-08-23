@@ -25,6 +25,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import { useState } from "react";
 import { Suspense } from "react";
 import Loading from "app/loading";
+import { CardActionArea } from "@mui/material";
 const CardMedia = React.lazy(() => import("@mui/material/CardMedia"))
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -63,6 +64,7 @@ export default function CardMui({ userData,error }) {
                 className="w-full sm:w-6/12 md:w-4/12 lg:w-3/12 border-2s border-red-700s px-4 pb-4"
               >
                 <Card>
+                  <CardActionArea href={`/become-guide/${host.id}`}>
                   <CardHeader
                     avatar={
                       <Avatar  className="me-3 bg-teal-500" aria-label="recipe">
@@ -165,6 +167,7 @@ export default function CardMui({ userData,error }) {
                       </Typography>
                     </CardContent>
                   </Collapse> */}
+                  </CardActionArea>
                 </Card>
               </div>
             );
