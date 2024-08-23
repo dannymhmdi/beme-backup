@@ -15,7 +15,6 @@ import logo from "@/public/images/logo.svg";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import PageLoader from "next/dist/client/page-loader";
 
 const pageChange = [
   { name: "ورود", route: "/login" },
@@ -74,7 +73,8 @@ function Header() {
                 return (
                   <MenuItem key={index} onClick={handleCloseNavMenu}>
                     <Link
-                      href={page.route}
+                      // href={page.route}
+                      href={page.route === "/register" ? '#':page.route}
                       className={` text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 ${
                         page.route === route
                           ? "bg-teal-500 rounded-lg py-2 hover:text-dark text-white"
@@ -104,7 +104,8 @@ function Header() {
                 // </Button>
                 <Link
                   key={index}
-                  href={`${page.route}`}
+                   href={page.route}
+                  // href={page.route === "/register" ? '#':page.route}
                   className={`text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 ${
                     page.route === route
                       ? "bg-teal-500 rounded-lg py-2 hover:text-dark text-white"
