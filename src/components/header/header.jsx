@@ -104,8 +104,8 @@ function Header() {
                 // </Button>
                 <Link
                   key={index}
-                   href={page.route}
-                  // href={page.route === "/register" ? '#':page.route}
+                  //  href={page.route}
+                  href={page.route === "/register" ? '#':page.route}
                   className={`text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 ${
                     page.route === route
                       ? "bg-teal-500 rounded-lg py-2 hover:text-dark text-white"
