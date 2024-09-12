@@ -3,7 +3,13 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./dialogButton.module.css";
 import CategoriFilterBox from "../categori-filter-box/CategoriFilterBox";
 import { Button } from "@mui/material";
-const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilterApply ,setCurrentPage }) => {
+const DialogButton = ({
+  sendFilteredRequestHandler,
+  fields,
+  setFields,
+  setFilterApply,
+  setCurrentPage,
+}) => {
   const [showFilterBox, setShowFilterBox] = useState(false);
   const [showDateBox, setShowDateBox] = useState(false);
   const divRef = useRef(null);
@@ -54,8 +60,16 @@ const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilte
               close
             </span>
           </div>
-          <CategoriFilterBox {...{sendFilteredRequestHandler,setShowDateBox ,fields ,setFields ,setFilterApply ,setCurrentPage}}/>
-
+          <CategoriFilterBox
+            {...{
+              sendFilteredRequestHandler,
+              setShowDateBox,
+              fields,
+              setFields,
+              setFilterApply,
+              setCurrentPage,
+            }}
+          />
         </div>
         <div
           className={`overflow-y-auto sm:h-[450px] md:w-6/12 w-full bg-white text-dark py-5 px-2 sm:rounded-lg sm:absolute sm:top-full z-[100] fixed top-0 right-0 left-0 bottom-0  overflow-x-hidden${
@@ -80,24 +94,28 @@ const DialogButton = ({ sendFilteredRequestHandler , fields , setFields,setFilte
           labore, eveniet voluptatum, eligendi quam quidem facilis magnam totam
           corporis quibusdam quis! filterBox
         </div>
-        <button
-          className="text-white bg-teal-500 px-5 py-2 rounded-lg ms-2"
+        <Button
+          variant="contained"
+          sx={{backgroundColor:'#14b8a6'}}
+          className="text-white bg-teal-500s px-5 py-2 rounded-lg ms-2 hover:bg-teal-600"
           onClick={() => {
             setShowDateBox(true);
             setShowFilterBox(false);
           }}
         >
           دسته بندی
-        </button>
-        <button
-          className="text-white bg-teal-500 px-5 py-2 rounded-lg ms-2"
+        </Button>
+        <Button
+          variant="contained"
+          sx={{backgroundColor:'#14b8a6'}}
+          className="text-white bg-teal-500s px-5 py-2 rounded-lg ms-2 hover:bg-teal-600"
           onClick={() => {
             setShowFilterBox(true);
             setShowDateBox(false);
           }}
         >
           اشخاص
-        </button>
+        </Button>
       </div>
     </>
   );

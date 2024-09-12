@@ -12,6 +12,10 @@ h6 {
   font-weight: inherit;
 }
 
+html{
+  direction: rtl !important;
+}
+
 blockquote,
 dl,
 dd,

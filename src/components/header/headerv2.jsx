@@ -81,7 +81,6 @@ function HeaderV2({}) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            // className="sm:hidden text-teal-400s mr-2s"
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
@@ -92,7 +91,7 @@ function HeaderV2({}) {
               <Link
                 key={index}
                 href={page.route}
-                className={` text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 ${
+                className={` text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 no-underline ${
                   page.route === route
                     ? "bg-teal-500 rounded-lg py-2 hover:text-dark text-white"
                     : "text-dark hover:text-teal-500"
@@ -106,7 +105,6 @@ function HeaderV2({}) {
           <Typography
             variant="h6"
             component="div"
-            // className="hidden sm:block"
             sx={{
               display: { xs: "none", sm: "block" },
               color: "rgba(0, 0, 0, 0.87)",

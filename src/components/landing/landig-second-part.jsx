@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 // import  VideoSection  from "./video";
 
@@ -6,9 +7,9 @@ const LandigPart2 = () => {
     <>
       <div className="mt-10">
         <div className="text-center">
-          <button className="text-base font-bold md:text-2xl p-4 md:px-4 borders border-solid border-teal-400 rounded-full bg-teal-400 transition-all duration-200 ease-out hover:ease-in hover:bg-teal-300 hover:px-6">
+          <Button className="text-base font-bold md:text-2xl p-4 md:px-4 borders border-solid border-teal-400 rounded-full bg-teal-400 transition-all duration-200 ease-out hover:ease-in hover:bg-teal-300 hover:px-6">
             راهنماهای بیشتر را کشف کنید
-          </button>
+          </Button>
         </div>
 
         <div className="py-5">
@@ -21,9 +22,9 @@ const LandigPart2 = () => {
         </div>
 
         <div className="text-center">
-          <button className="text-base font-bold md:text-2xl p-4 md:px-6 borders border-solid border-teal-400 rounded-full bg-teal-400 transition-all duration-200 ease-out hover:ease-in hover:bg-teal-300 md:hover:px-8 hover:px-5">
+          <Button className="text-base font-bold md:text-2xl p-4 md:px-6 borders border-solid border-teal-400 rounded-full bg-teal-400 transition-all duration-200 ease-out hover:ease-in hover:bg-teal-300 md:hover:px-8 hover:px-5">
             گیفت کارت BeMe
-          </button>
+          </Button>
         </div>
         {/* <VideoSection/> */}
       </div>
