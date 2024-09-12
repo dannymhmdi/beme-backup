@@ -81,12 +81,13 @@ function HeaderV2({}) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
+            // className="sm:hidden text-teal-400s mr-2s"
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
           <UserLabelCard/>
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {routes.map((page, index) => (
               <Link
                 key={index}
@@ -105,6 +106,7 @@ function HeaderV2({}) {
           <Typography
             variant="h6"
             component="div"
+            // className="hidden sm:block"
             sx={{
               display: { xs: "none", sm: "block" },
               color: "rgba(0, 0, 0, 0.87)",
