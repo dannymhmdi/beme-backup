@@ -13,16 +13,19 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { fromJSON } from "postcss";
 import Error from "next/error";
+import ToastAlert from "../snackbar/ToastAlert";
+import { useRouter } from 'next/navigation'
 
 export const RegistorDialog = ({ openDialog, setOpenDialog }) => {
+    const router = useRouter()
   const [formData, setFormData] = React.useState({
     username: "",
     password: "",
   });
+  const [alert,setAlert] = React.useState({ status: false, message: ""})
   const onChangeHandler = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log("formData", formData);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickOpen = () => {
@@ -50,15 +53,27 @@ export const RegistorDialog = ({ openDialog, setOpenDialog }) => {
       });
       const json = await response.json();
       console.log("json", json);
+     if (json.error) {
+        setAlert(prev => {
+            return {...prev,status:true,message:json.error,success:json.success}
+        })
+     }
+     else {
+        setAlert(prev => ({...prev,status:true,message:json.message,success:json.success}))
+        setTimeout(()=> {
+            router.push('login')
+        },2000)
+     }
       handleClose();
     } catch (error) {
       console.clear("faild to send register form data");
       throw new Error("faild to send register form data");
     }
   };
-
+console.log('router',router)
   return (
     <>
+    <ToastAlert {...{setAlert,alert}}/>
       <Dialog
         open={openDialog}
         onClose={handleClose}

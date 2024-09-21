@@ -42,6 +42,7 @@ export const POST = async (req, res) => {
         status: true,
         totalItems: parseInt(totalItems?.rows?.[0]?.count),
         query: `SELECT * FROM users WHERE fields && Array[${fields}]`,
+        success:true
       },
     });
   } catch (err) {
@@ -50,6 +51,7 @@ export const POST = async (req, res) => {
       status: false,
       query: `SELECT * FROM users WHERE fields && Array[${fields}]`,
       fields,
+      success:false
     });
   }
 };

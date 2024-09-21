@@ -1,5 +1,7 @@
+import { setCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { Pool } = require("pg");
 const pool = new Pool({
   user: "postgres",
@@ -34,12 +36,28 @@ export const POST = async (req, res) => {
       "INSERT INTO users (password, tel) VALUES ($1, $2)",
       [hashedPassword, username]
     );
+
+    const newUserData = await client.query(
+      `select id,tel from users where tel= $1`,
+      [username]
+    );
+    const { id, tel } = newUserData.rows?.[0];
     client.release();
+
+    // const secretKey = "qRMvcleDzKNdqAC2phWbUsEDM7LU/V0zoEld8Ne3Wck=";
+    // const token = jwt.sign({ userId: id }, secretKey, { expiresIn: "1h" });
+    //  setCookie('token',token,{req,res,httpOnly:true,})
     return NextResponse.json({
       message: "ثبت نام شما با موفقیت انجام شد",
       status: true,
+      success: true,
+      newUserData: newUserData.rows,
     });
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json({
+      error: "خطا در ثبت نام کاربر",
+      status: false,
+      success: false,
+    });
   }
 };

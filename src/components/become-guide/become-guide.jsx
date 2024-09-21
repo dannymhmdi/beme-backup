@@ -14,21 +14,9 @@ const BecomeGuide = ({}) => {
   const [totalItems, setTotalItems] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState([]);
-  const [error, setError] = useState({ status: false, message: "" });
+  const [alert, setAlert] = useState({ status: false, message: "" });
   const [filterApply, setFilterApply] = useState(false);
   const [fields, setFields] = useState([]);
-  // useEffect(() => {
-  //   try {
-  //     fetch(`http://localhost:3000/api/user-count`)
-  //       .then((res) => res.json())
-  //       .then((res) => {
-  //         setTotalItems(Number(res?.[0]?.count));
-  //       });
-  //   } catch (err) {
-  //     throw new Error("faild to get totalItems");
-  //   }
-  // }, []);
-
   // useEffect(() => {
   //   try {
   //     fetch(`http://localhost:3000/api/${currentPage}`, {
@@ -60,7 +48,7 @@ const BecomeGuide = ({}) => {
       const data = await response.json();
       if (data.error) {
         setIsLoading(false);
-        setError((prev) => {
+        setAlert((prev) => {
           return { ...prev, status: true, message: data.error };
         });
         return;
@@ -85,7 +73,7 @@ const BecomeGuide = ({}) => {
       {isLoading && <Loading />}
       <MuiTheme>
         <ToastAlert
-          {...{ error: error.status, setError, message: error.message }}
+          {...{ alert, setAlert }}
         />
         {/* <Filterbox /> */}
         <DialogButton
