@@ -1,6 +1,7 @@
 import Footer  from "@/components/footer/footer";
 import { HeaderV2 } from "@/components/header";
 import Header from "@/components/header/header";
+import RegistorDialog from "@/components/registerDialog/RegistorDialog";
 import React from "react";
 
 const LandingLayout = ({ children }) => {
