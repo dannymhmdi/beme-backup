@@ -1,17 +1,13 @@
-import connectToDb from "@/js-modules/connectToDb";
+const { Pool } = require("pg");
 import { NextResponse } from "next/server";
-
-export const GET = async (req, res) => {
-  try {
-    const response = await connectToDb(
-      `select * from cars where brand='BMW'`
-    );
-    const newRes = response?.map((value) => {
-      return { name: value?.brand };
-    });
-    return NextResponse.json(newRes);
-  } catch (err) {
-    console.log("error in server", err);
-    // throw new Error('error in connection to database occured')
-  }
+const pool = new Pool({
+  user: "postgres",
+  host: "localhost",
+  database: "postgres",
+  password: "shirinjk83",
+  port: 5432,
+});
+export const POST = async (req, res) => {
+  // res.send('login response')
+  return NextResponse.json('login response')
 };
