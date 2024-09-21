@@ -7,11 +7,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 
-
 const RegisterForm = () => {
   return (
     <BasePage fixed={true}>
-      <Card sx={{ padding: 5 }} className="my-5">
+      <Card sx={{ padding: 5 ,minHeight:'80vh'}} className="my-5">
         <div className="w-full text-center">
           <h1 className="text-4xl">
             به <span className="text-teal-400">BeMe</span> خوش آمدید
@@ -23,15 +22,18 @@ const RegisterForm = () => {
           </h4>
         </div>
         <div className="w-full text-center">
-          <TextField
-            id="outlined-basic"
-            required
-            label="شماره تلفن"
-            variant="outlined"
-            className="w-8/12"
-          />
+          <form action="">
+            <TextField
+              id="outlined-basic"
+              required
+              size="small"
+              label="شماره تلفن"
+              variant="outlined"
+              className="w-full sm:w-6/12  lg:w-4/12"
+            />
+          </form>
         </div>
-        <FormGroup className="my-5">
+        {/* <FormGroup className="my-5">
           <div className="w-full text-center mr-0">
             <FormControlLabel
               required
@@ -40,12 +42,7 @@ const RegisterForm = () => {
               label="شرایط و قوانین BeMe را میذیرم"
             />
           </div>
-        </FormGroup>
-        <div className="w-full text-center">
-          <Button variant="outlined" className="w-8/12">
-            ثبت نام
-          </Button>
-        </div>
+        </FormGroup> */}
       </Card>
     </BasePage>
   );

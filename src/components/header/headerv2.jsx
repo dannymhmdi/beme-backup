@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,13 +14,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import { usePathname,useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import logo from '@/public/images/logo.svg'
+import logo from "@/public/images/logo.svg";
 import UserLabelCard from "../Generals/userLabelCard/userLabelCard";
+import RegistorDialog from "@/components/registerDialog/RegistorDialog";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
 
 const routes = [
   { name: "ورود", route: "/login" },
@@ -30,12 +31,18 @@ const routes = [
   { name: "راهنما باش", route: "/become-guide" },
 ];
 
-function HeaderV2({}) {
+const HeaderV2 = ({ children }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState(false);
   const route = usePathname();
   const router = useRouter();
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const routeHandler = (e) => {
+    e.preventDefault();
+    setOpenDialog(true);
   };
 
   const drawer = (
@@ -66,12 +73,13 @@ function HeaderV2({}) {
   );
 
   // const container = window !== undefined ? () => window().document.body : undefined;
-
+console.log('openDialog',openDialog)
   return (
     // <Box sx={{ display: 'flex' }} >
     <>
       <CssBaseline />
       <AppBar position="sticky" sx={{ bgcolor: "#fff" }} className="shadow-lg">
+        <RegistorDialog {...{ openDialog, setOpenDialog }} />
         <Toolbar
           className="justify-betweens border"
           sx={{ justifyContent: "space-between" }}
@@ -85,13 +93,14 @@ function HeaderV2({}) {
           >
             <MenuIcon />
           </IconButton>
-          <UserLabelCard/>
+          <UserLabelCard />
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {routes.map((page, index) => (
               <Link
                 key={index}
-                href={page.route}
-                className={` text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 no-underline ${
+                href={page.route === "/register" ? '#':page.route}
+                onClick={page.route === "/register" ? routeHandler : null}
+                className={`text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 no-underline ${
                   page.route === route
                     ? "bg-teal-500 rounded-lg py-2 hover:text-dark text-white"
                     : "text-dark hover:text-teal-500"
@@ -110,15 +119,15 @@ function HeaderV2({}) {
               color: "rgba(0, 0, 0, 0.87)",
             }}
           >
-              <Image
-            src={logo}
-            alt="logo"
-            width={45}
-            height={45}
-            quality={100}
-            onClick={() => router.push("/")}
-            style={{ cursor: "pointer" }}
-          />
+            <Image
+              src={logo}
+              alt="logo"
+              width={45}
+              height={45}
+              quality={100}
+              onClick={() => router.push("/")}
+              style={{ cursor: "pointer" }}
+            />
           </Typography>
         </Toolbar>
       </AppBar>
@@ -146,6 +155,6 @@ function HeaderV2({}) {
     </>
     // </Box>
   );
-}
+};
 
 export default HeaderV2;
