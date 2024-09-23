@@ -1,5 +1,6 @@
 const { Pool } = require("pg");
 import next from "next";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 const pool = new Pool({
@@ -11,6 +12,8 @@ const pool = new Pool({
 });
 
 export const POST = async (req, res) => {
+  // const cookie = cookies().get('access-token')
+
   const bd = await req.json();
   const { fields, currentPage } = bd;
   const offset = (currentPage - 1) * 6;
@@ -42,7 +45,7 @@ export const POST = async (req, res) => {
         status: true,
         totalItems: parseInt(totalItems?.rows?.[0]?.count),
         query: `SELECT * FROM users WHERE fields && Array[${fields}]`,
-        success:true
+        success:true,
       },
     });
   } catch (err) {

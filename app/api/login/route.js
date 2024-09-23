@@ -1,9 +1,8 @@
 const { Pool } = require("pg");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-import { setCookie } from "cookies-next";
 import { NextResponse } from "next/server";
-
+import { cookies } from "next/headers";
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
@@ -41,17 +40,18 @@ export const POST = async (req, res) => {
       });
     }
 
-    // return NextResponse.json('login successful')
 
     const secretKey = "d1ksEjGygH0lsFCqDffok8fvIMXCj+2gJJAiFY5tI4s=";
     const token = jwt.sign({ userId }, secretKey, { expiresIn: "1h" });
-    console.log("token", token);
-    setCookie("token", token, {
+
+    cookies().set('access-token',token,{
+      req,
+      maxAge:3600,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       path: "/"
-    });
+    })
     return NextResponse.json({
       message: "با موفقیت وارد شدید",
       success: true,

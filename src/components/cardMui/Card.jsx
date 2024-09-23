@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function CardMui({ userData,error }) {
+export default function CardMui({ userData,alert }) {
   const [expanded, setExpanded] = useState(-1);
   const [openExpandCard , setOpenExpandCard] = useState(false)
   const handleExpandClick = (expandedCard) => {
@@ -172,7 +172,7 @@ export default function CardMui({ userData,error }) {
               </div>
             );
           })
-        : error.message ? 'خطای پردازش':userData.status ?'نتیجه ای یافت نشد': "صبر کنید ..."}
+        : alert.message ? 'خطای پردازش':userData.status ?'نتیجه ای یافت نشد': "صبر کنید ..."}
     </div>
   );
 }

@@ -20,7 +20,6 @@ function ToastAlert({ alert, setAlert, slideDirection, backgroundColor='rgb(244,
       return {...prev,status:false}
     })
   }, 3000);
-// console.log('error in toast',alert)
   return (
     <div>
       <Snackbar

@@ -8,7 +8,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 import "./styles.css";
 import Link from "next/link";
-const PersonsCard = ({ userData, error }) => {
+const PersonsCard = ({ userData, alert }) => {
   const [users, setUsers] = useState([]);
 
   // useEffect(() => {
@@ -89,7 +89,7 @@ const PersonsCard = ({ userData, error }) => {
                 </div>
               );
             })
-          : error.message ? 'خطای پردازش':userData.status ?'نتیجه ای یافت نشد': "صبر کنید ..."}
+          : alert.message ? 'خطای پردازش':userData.status ?'نتیجه ای یافت نشد': "صبر کنید ..."}
       </div>
 
     </>

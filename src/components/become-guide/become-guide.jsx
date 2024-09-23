@@ -8,8 +8,10 @@ import { Paginator } from "@/components/pagination/paginator";
 import Loading from "app/loading";
 import ToastAlert from "../snackbar/ToastAlert";
 import CardMui from "../cardMui/Card";
+import { useRouter } from "next/navigation";
 
 const BecomeGuide = ({}) => {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +34,12 @@ const BecomeGuide = ({}) => {
   //   }
   // }, [currentPage]);
 
+ 
+ 
+
   const sendFilteredRequestHandler = async () => {
     const params = fields.length ? { fields, currentPage } : { currentPage };
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const response = await fetch(`http://localhost:3000/api/test-api`, {
         method: "POST",
@@ -72,9 +77,7 @@ const BecomeGuide = ({}) => {
       {/* <BasePage fluid={"true"}  className={" bg-white px-0"}></BasePage> ------> fluid container */}
       {isLoading && <Loading />}
       <MuiTheme>
-        <ToastAlert
-          {...{ alert, setAlert }}
-        />
+        <ToastAlert {...{ alert, setAlert }} />
         {/* <Filterbox /> */}
         <DialogButton
           {...{
@@ -85,15 +88,15 @@ const BecomeGuide = ({}) => {
             setCurrentPage,
           }}
         />
-        <PersonsCard {...{ userData, error }} />
+        <PersonsCard {...{ userData, alert }} />
         {/* {filterApply ? ( */}
-          <Paginator
-            {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
-          />
-        <CardMui {...{ userData, error }} />
         <Paginator
-            {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
-          />
+          {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
+        />
+        <CardMui {...{ userData, alert }} />
+        <Paginator
+          {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
+        />
       </MuiTheme>
     </BasePage>
   );

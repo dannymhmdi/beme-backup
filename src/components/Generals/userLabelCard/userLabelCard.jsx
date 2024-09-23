@@ -9,15 +9,33 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
+import { useRouter } from "next/navigation";
 
 const UserLabelCard = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [alert,setAlert] = React.useState({})
+  const router = useRouter()
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = async() => {
     setAnchorEl(null);
+try {
+  const request = await fetch(`http://localhost:3000/api/logout`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  const response = await request.json();
+  if (response.success) {
+    // router.refresh()
+    window.location.reload()
+  }
+} catch (error) {
+  throw new Error('falid to logout try again')
+}
   };
   return (
     <React.Fragment>

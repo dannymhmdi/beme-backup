@@ -1,4 +1,3 @@
-import { setCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");

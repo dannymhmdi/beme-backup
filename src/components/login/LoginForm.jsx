@@ -7,13 +7,18 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { AccountCircle } from "@mui/icons-material";
 import { Alert, AlertTitle, Button, List, ListItem } from "@mui/material";
+import ToastAlert from "@/components/snackbar/ToastAlert";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const [alert, setAlert] = useState({ status: false, message: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const router = useRouter();
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const passConditions = [
@@ -38,21 +43,41 @@ export default function LoginForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:3000/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-      // next: { revalidate: 3600 },
-    });
+    try {
+      const response = await fetch(`http://localhost:3000/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (data?.error) {
+        setAlert((prev) => ({ ...prev, status: true, message: data.error }));
+        return;
+      }
+      setAlert((prev) => ({
+        ...prev,
+        status: true,
+        message: data.message,
+        success: data.success,
+      }));
+    router.push('become-guide')
+    } catch (error) {
+      setAlert((prev) => ({
+        ...prev,
+        status: true,
+        message: "خطا در برقراری ارتباط با سرور",
+      }));
+    }
   };
 
   return (
     <div
       className="lg:w-3/12 sm:w-5/12 w-10/12 flex flex-col flex-wrap items-center sm:px-4 px-2 py-6 bg-teal-50s shadow-2xl rounded-md bg-white"
-        // style={{ backgroundColor: "rgba(20, 20, 20, 0.62)" }}
+      // style={{ backgroundColor: "rgba(20, 20, 20, 0.62)" }}
     >
+      <ToastAlert {...{ alert, setAlert }} />
       <h1 className="font-bold text-lg text-white">ورود</h1>
       <form action="" method="POST" onSubmit={submitHandler}>
         <div>
@@ -95,7 +120,7 @@ export default function LoginForm() {
               ),
             }}
             inputProps={{
-              maxLength: 10, 
+              maxLength: 10,
             }}
           />
         </div>
@@ -182,4 +207,3 @@ export default function LoginForm() {
     </div>
   );
 }
-
