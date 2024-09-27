@@ -6,19 +6,32 @@ import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { AccountCircle } from "@mui/icons-material";
-import { Alert, AlertTitle, Button, List, ListItem } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  CircularProgress,
+  List,
+  ListItem,
+} from "@mui/material";
 import ToastAlert from "@/components/snackbar/ToastAlert";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "@/redux/reducers/tokenSlice";
 
 export default function LoginForm() {
   const [alert, setAlert] = useState({ status: false, message: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
   const router = useRouter();
-
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state);
+  console.log("token", token);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const passConditions = [
@@ -43,6 +56,7 @@ export default function LoginForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch(`http://localhost:3000/api/login`, {
         method: "POST",
@@ -52,6 +66,7 @@ export default function LoginForm() {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
+      setLoading(false);
       if (data?.error) {
         setAlert((prev) => ({ ...prev, status: true, message: data.error }));
         return;
@@ -62,7 +77,10 @@ export default function LoginForm() {
         message: data.message,
         success: data.success,
       }));
-    router.push('become-guide')
+      dispatch(setToken(data.token))
+      setTimeout(() => {
+        router.push("/become-guide");
+      }, 2000);
     } catch (error) {
       setAlert((prev) => ({
         ...prev,
@@ -74,8 +92,8 @@ export default function LoginForm() {
 
   return (
     <div
-      className="lg:w-3/12 sm:w-5/12 w-10/12 flex flex-col flex-wrap items-center sm:px-4 px-2 py-6 bg-teal-50s shadow-2xl rounded-md bg-white"
-      // style={{ backgroundColor: "rgba(20, 20, 20, 0.62)" }}
+      className="lg:w-3/12 sm:w-5/12 w-10/12 flex flex-col flex-wrap items-center sm:px-4 px-2 py-6 bg-teal-50s shadow-2xl rounded-md bg-whites"
+      style={{ backgroundColor: "rgba(20, 20, 20, 0.4)" }}
     >
       <ToastAlert {...{ alert, setAlert }} />
       <h1 className="font-bold text-lg text-white">ورود</h1>
@@ -134,7 +152,7 @@ export default function LoginForm() {
             onChange={onChangeHandler}
             helperText={
               formData.password.length > 0 && !passRegex.test(formData.password)
-                ? "پسورد اشتباه است"
+                ? "فرمت پسورد اشتباه است"
                 : ""
             }
             error={
@@ -164,6 +182,14 @@ export default function LoginForm() {
             }}
           />
         </div>
+        <div>
+          <Link
+            href={"/register"}
+            className="no-underline text-teal-500 hover:text-teal-700 transition-all duration-200 ease-linear inline-block py-1"
+          >
+            ثبت نام درBeMe
+          </Link>
+        </div>
         <div className="mt-2 border">
           <Button
             variant="contained"
@@ -181,7 +207,7 @@ export default function LoginForm() {
               )
             }
           >
-            ورود
+            {loading ? <CircularProgress size="30px" color="info" /> : "ورود"}
           </Button>
         </div>
       </form>

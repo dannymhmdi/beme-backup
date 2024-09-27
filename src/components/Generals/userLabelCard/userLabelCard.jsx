@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -10,32 +11,36 @@ import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 const UserLabelCard = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state);
+  console.log("token Logout", token);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [alert,setAlert] = React.useState({})
-  const router = useRouter()
+  const [alert, setAlert] = React.useState({});
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = async() => {
+  const handleClose = async () => {
     setAnchorEl(null);
-try {
-  const request = await fetch(`http://localhost:3000/api/logout`,{
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  const response = await request.json();
-  if (response.success) {
-    // router.refresh()
-    window.location.reload()
-  }
-} catch (error) {
-  throw new Error('falid to logout try again')
-}
+    try {
+      const request = await fetch(`http://localhost:3000/api/logout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const response = await request.json();
+      if (response.success) {
+        window.location.reload();
+      }
+    } catch (error) {
+      throw new Error("falid to logout try again");
+    }
   };
   return (
     <React.Fragment>
@@ -58,8 +63,8 @@ try {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
-        onClose={handleClose}
-        onClick={handleClose}
+        onClose={() => setAnchorEl(null)}
+        onClick={() => setAnchorEl(null)}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -76,7 +81,7 @@ try {
               display: "block",
               position: "absolute",
               top: 0,
-              left:32,
+              left: 32,
               width: 10,
               height: 10,
               bgcolor: "background.paper",
@@ -85,8 +90,8 @@ try {
             },
             "@media (min-width: 600px)": {
               "&::before": {
-               left:'inherit',
-               right:14
+                left: "inherit",
+                right: 14,
               },
             },
           },
@@ -94,18 +99,20 @@ try {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
+        <Link href={'/user-profile'} className="no-underline text-current">
+          <MenuItem onClick={() => setAnchorEl(null)}>
+            <Avatar /> پروفایل کاربر
+          </MenuItem>
+        </Link>
+        {/* <MenuItem onClick={handleClose}>
+          <Avatar /> اکانت من
+        </MenuItem> */}
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          خروج
         </MenuItem>
       </Menu>
     </React.Fragment>

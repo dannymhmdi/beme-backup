@@ -9,6 +9,7 @@ import Login from "./login/page";
 // import { metaData } from "src/js-modules/metaData";
 import { MuiTheme } from "@/components/mui-theme";
 import PageRouter from "@/components/page-router-switch/page-router";
+import StoreProvider from "@/redux/StoreProvider";
 // const lexend = Lexend({ subsets: ["latin"] });
 // const meta = metaData
 const vazirFont = localFont({
@@ -20,8 +21,6 @@ export const metaData = {
   description: "BeMe",
 };
 
-
-
 export default function RootLayout({ children }) {
   // const path = usePathname()
   return (
@@ -30,13 +29,15 @@ export default function RootLayout({ children }) {
         className={`${vazirFont.className}`}
         // style={{ backgroundColor: "#EFEFEF" }}
       >
-        <MuiTheme>
-          {/* {
+        <StoreProvider>
+          <MuiTheme>
+            {/* {
           path === '/login' ? <Login/>: <LandingLayout>{children}</LandingLayout>
         } */}
-          {/* <LandingLayout>{children}</LandingLayout> */}
-          <PageRouter>{children}</PageRouter>
-        </MuiTheme>
+            {/* <LandingLayout>{children}</LandingLayout> */}
+            <PageRouter>{children}</PageRouter>
+          </MuiTheme>
+        </StoreProvider>
       </body>
     </html>
   );

@@ -9,6 +9,8 @@ import Loading from "app/loading";
 import ToastAlert from "../snackbar/ToastAlert";
 import CardMui from "../cardMui/Card";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const BecomeGuide = ({}) => {
   const router = useRouter();
@@ -19,22 +21,10 @@ const BecomeGuide = ({}) => {
   const [alert, setAlert] = useState({ status: false, message: "" });
   const [filterApply, setFilterApply] = useState(false);
   const [fields, setFields] = useState([]);
-  // useEffect(() => {
-  //   try {
-  //     fetch(`http://localhost:3000/api/${currentPage}`, {
-  //       cache: "force-cache",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((res) => {
-  //         setUserData(res);
-  //         setIsLoading(false);
-  //       });
-  //   } catch (err) {
-  //     throw new Error("faild to get data(paginator component)");
-  //   }
-  // }, [currentPage]);
 
- 
+  const counter = useSelector((state => state));
+  const dispatch = useDispatch();
+ console.log('counter',counter)
  
 
   const sendFilteredRequestHandler = async () => {
@@ -97,6 +87,7 @@ const BecomeGuide = ({}) => {
         <Paginator
           {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
         />
+        <button onClick={() => dispatch(deleteToken('accessToken set'))}>redux</button>
       </MuiTheme>
     </BasePage>
   );

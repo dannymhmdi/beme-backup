@@ -6,10 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -19,6 +15,8 @@ import Image from "next/image";
 import logo from "@/public/images/logo.svg";
 import UserLabelCard from "../Generals/userLabelCard/userLabelCard";
 import RegistorDialog from "@/components/registerDialog/RegistorDialog";
+import DrawerContent from "./DrawerContent";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -32,6 +30,7 @@ const routes = [
 ];
 
 const HeaderV2 = ({ children }) => {
+  const isUserLogin = useSelector((state) => state.checkLogin.isUserLogin);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const route = usePathname();
@@ -45,41 +44,13 @@ const HeaderV2 = ({ children }) => {
     setOpenDialog(true);
   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
-      <Divider />
-      <List>
-        {routes.map((page, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton
-              sx={{ textAlign: "center" }}
-              className={`text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 ${
-                page.route === route
-                  ? "bg-teal-500 py-2 hover:text-dark text-white"
-                  : "text-dark hover:text-teal-500"
-              }`}
-            >
-              <Link href={page.route}>
-                <ListItemText primary={page.name} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
   // const container = window !== undefined ? () => window().document.body : undefined;
-console.log('openDialog',openDialog)
   return (
     // <Box sx={{ display: 'flex' }} >
     <>
       <CssBaseline />
       <AppBar position="sticky" sx={{ bgcolor: "#fff" }} className="shadow-lg">
-        <RegistorDialog {...{ openDialog, setOpenDialog }} />
+        {route !== '/register' && <RegistorDialog {...{ openDialog, setOpenDialog }} />}
         <Toolbar
           className="justify-betweens border"
           sx={{ justifyContent: "space-between" }}
@@ -93,18 +64,18 @@ console.log('openDialog',openDialog)
           >
             <MenuIcon />
           </IconButton>
-          <UserLabelCard />
+         {isUserLogin && <UserLabelCard />} 
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {routes.map((page, index) => (
               <Link
                 key={index}
                 href={page.route === "/register" ? '#':page.route}
-                onClick={page.route === "/register" ? routeHandler : null}
+                onClick={page.route === "/register" && route !== "/register"? routeHandler : null}
                 className={`text-lg inline-block py-2 px-3  hover:border-b transition-all duration-200 no-underline ${
                   page.route === route
                     ? "bg-teal-500 rounded-lg py-2 hover:text-dark text-white"
                     : "text-dark hover:text-teal-500"
-                }`}
+                } ${!isUserLogin  ? 'inline-block':(page.route === '/login' || page.route === '/register')&&'hidden'}`}
                 // sx={{ color: "rgba(0, 0, 0, 0.87)" }}
               >
                 {page.name}
@@ -149,7 +120,7 @@ console.log('openDialog',openDialog)
             },
           }}
         >
-          {drawer}
+          <DrawerContent {...{handleDrawerToggle,routes}}/>
         </Drawer>
       </nav>
     </>
