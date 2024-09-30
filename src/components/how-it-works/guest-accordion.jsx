@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionActions,
@@ -8,10 +8,36 @@ import {
   Button,
 } from "@mui/material";
 import { ExpandMoreSharp } from "@mui/icons-material";
+import { useState } from "react";
 
 const GuestAccordion = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const divref = useRef();
+  const handleScroll = () => {
+    if (divref.current) {
+      const rect = divref.current.getBoundingClientRect();
+      // console.log("rect", rect.top);
+      if ( rect.top <= 380) {
+        setIsVisible(true);
+      }
+    }
+  };
+
+  useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+ 
   return (
-    <div>
+    <div
+      className={`${
+        isVisible ? "animate-fadeRight visible opacity-100" : "invisible opacity-0"
+      }`}
+      ref={divref}
+    >
       <h2 className="text-2xl pb-6">سوالات متداول مهمان</h2>
       <Accordion>
         <AccordionSummary
@@ -44,13 +70,13 @@ const GuestAccordion = () => {
             {" "}
             همه مهمانان احتمالی باید بدانند که شما یک ناظر صرف نخواهید بود.
             فلسفه ما این است که مهمانان مسافران سبک زندگی دیگری هستند، نه یک
-            توریست. شما دست های خود را کثیف خواهید کرد. با این حال، سطح غوطه
-            وری به تجربه ای بستگی دارد که راهنمای شما برای شما در نظر گرفته است،
+            توریست. شما دست های خود را کثیف خواهید کرد. با این حال، سطح غوطه وری
+            به تجربه ای بستگی دارد که راهنمای شما برای شما در نظر گرفته است،
             بنابراین حتماً توضیحات تجربه آنها را به دقت بخوانید.
           </p>
         </AccordionDetails>
       </Accordion>
-      <Accordion >
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreSharp className="text-teal-400" />}
           aria-controls="panel3-content"

@@ -3,7 +3,7 @@ import React from "react";
 const BusinessPlan = () => {
   return (
 
-      <div className="flex flex-row flex-wrap bg-light-gray rounded-md mb-32">
+      <div className="flex flex-row flex-wrap bg-light-gray rounded-md mb-32 animate-fadeRight">
         <div className="w-full md:border-e-4 border-border-gray  md:w-6/12 py-7 px-8">
           <span className="borders text-xl inline-block pb-2 relative after:content-[''] after:block after:w-full after:h-0.5 after:bg-teal-400 after:absolute after:right-0">
             ثبت نام

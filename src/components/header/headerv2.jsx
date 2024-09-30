@@ -98,6 +98,7 @@ const HeaderV2 = ({ children }) => {
               quality={100}
               onClick={() => router.push("/")}
               style={{ cursor: "pointer" }}
+              className="hover:animate-spin"
             />
           </Typography>
         </Toolbar>

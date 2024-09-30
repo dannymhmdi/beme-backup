@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Accordion,
   AccordionActions,
@@ -10,8 +10,31 @@ import {
 import { ExpandMoreSharp } from "@mui/icons-material";
 import Link from "next/link";
 const GuidAccordion = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const divref = useRef();
+  const handleScroll = () => {
+    if (divref.current) {
+      const rect = divref.current.getBoundingClientRect();
+      if (rect.top < 200) {
+        setIsVisible(true);
+      }
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="my-14 ">
+    <div
+      ref={divref}
+      className={`my-14 ${
+        isVisible
+          ? "animate-fadeRight visible opacity-100"
+          : "invisible opacity-0"
+      }`}
+    >
       <h2 className="text-2xl pb-6">راهنمای سوالات متداول</h2>
       <Accordion>
         <AccordionSummary
@@ -130,7 +153,9 @@ const GuidAccordion = () => {
             <br />
             برای جزئیات بیشتر و سایر سوالات، لطفاً با تیم خدمات مشتریان ما تماس
             بگیرید یا یک ایمیل به آن ارسال کنید
-            <Link href={'/'} className="text-teal-500">BeMe@gmai.com</Link>
+            <Link href={"/"} className="text-teal-500">
+              BeMe@gmai.com
+            </Link>
           </p>
         </AccordionDetails>
       </Accordion>

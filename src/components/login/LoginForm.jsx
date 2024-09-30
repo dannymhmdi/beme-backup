@@ -77,9 +77,10 @@ export default function LoginForm() {
         message: data.message,
         success: data.success,
       }));
-      dispatch(setToken(data.token))
+      dispatch(setToken(data.token));
       setTimeout(() => {
-        router.push("/become-guide");
+        // router.push("/become-guide");
+        window.location.replace("/become-guide");
       }, 2000);
     } catch (error) {
       setAlert((prev) => ({
@@ -92,7 +93,7 @@ export default function LoginForm() {
 
   return (
     <div
-      className="lg:w-3/12 sm:w-5/12 w-10/12 flex flex-col flex-wrap items-center sm:px-4 px-2 py-6 bg-teal-50s shadow-2xl rounded-md bg-whites"
+      className="lg:w-3/12 sm:w-5/12 w-10/12 flex flex-col flex-wrap items-center sm:px-4 px-2 py-6 bg-teal-50s shadow-2xl rounded-md bg-whites animate-fadeRight"
       style={{ backgroundColor: "rgba(20, 20, 20, 0.4)" }}
     >
       <ToastAlert {...{ alert, setAlert }} />
@@ -197,7 +198,7 @@ export default function LoginForm() {
             size="medium"
             color="success"
             sx={{ maxWidth: "260px" }}
-            className="w-full"
+            className="w-full hover:animate-bounce"
             disabled={
               !(
                 formData.username.length > 0 &&

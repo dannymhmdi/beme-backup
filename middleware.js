@@ -20,8 +20,13 @@ export function middleware(req) {
 
 // Specify the path(s) to apply the middleware
 export const config = {
-  matcher: ["/become-guide"],
+  matcher: ["/become-guide/:path*"],
 };
+
+// export const config = {
+//   matcher: ["/become-guide"],
+// };
+
 
 
 

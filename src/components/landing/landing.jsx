@@ -11,11 +11,12 @@ import { Suspense } from "react";
 import { Card } from "@mui/material";
 const VideoTeaser = lazy(() => import("./VideoTeaser"));
 const Landing = () => {
+
   return (
     <>
       <BasePage fixed={true}>
         <>
-          <Card sx={{padding:10,boxShadow:'none'}}>
+          <Card sx={{padding:10,boxShadow:'none'}} className="animate-fadeRight">
             <div className="size-full text-center">
               <h1 className="font-bold text-4xl md:text-5xl">
                 با
@@ -41,7 +42,7 @@ const Landing = () => {
               <p>
                 <Link
                   href={"./home"}
-                  className="text-base  font-bold md:text-2xl p-4 md:p-3 borders border-solid border-teal-400 rounded-full bg-teal-400 transition-all duration-200 ease-out hover:ease-in hover:bg-teal-300 hover:px-5"
+                  className="text-base no-underline  font-bold md:text-2xl p-4 md:p-3 borders border-solid border-teal-400 rounded-full bg-teal-400 transition-all duration-200 ease-out hover:ease-in hover:bg-teal-300 hover:px-5"
                 >
                   راهنماتو انتخاب کن
                 </Link>

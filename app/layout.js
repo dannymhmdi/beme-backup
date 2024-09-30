@@ -1,13 +1,10 @@
 // 'use client'
-import { LandingLayout } from "@/layout/landing-layout";
 import localFont from "next/font/local";
-import { Lexend } from "next/font/google";
 import "./globals.css";
 import "./global-icons.css";
-import { usePathname } from "next/navigation";
-import Login from "./login/page";
 // import { metaData } from "src/js-modules/metaData";
 import { MuiTheme } from "@/components/mui-theme";
+// import "tailwindcss/tailwind.css";
 import PageRouter from "@/components/page-router-switch/page-router";
 import StoreProvider from "@/redux/StoreProvider";
 // const lexend = Lexend({ subsets: ["latin"] });
@@ -26,6 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body
+        id="#app-wrapper"
         className={`${vazirFont.className}`}
         // style={{ backgroundColor: "#EFEFEF" }}
       >

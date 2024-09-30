@@ -78,21 +78,7 @@ console.log('router',router)
         open={openDialog}
         onClose={handleClose}
         maxWidth={"xs"}
-        // PaperProps={{
-        //   component: "form",
-        //   onSubmit: (event) => {
-        //     event.preventDefault();
-        //     const formData = new FormData(event.currentTarget);
-        //     const formJson = Object.fromEntries(formData.entries());
-        //     if (telRegex.test(formJson.username) && passRegex.test(formJson.password)) {
-        //         sendRequest(formJson)
-        //     }
-        //     else{
-
-        //     }
-        //     console.log("formJson", formJson);
-        //   },
-        // }}
+        className="animate-fadeRight"
       >
         <DialogTitle>ثبت نام</DialogTitle>
         <form action="" method="POST" onSubmit={sendRequest}>
