@@ -9,7 +9,6 @@ import Loading from "app/loading";
 import ToastAlert from "../snackbar/ToastAlert";
 import CardMui from "../cardMui/Card";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
 
 
 const BecomeGuide = ({}) => {
@@ -21,10 +20,6 @@ const BecomeGuide = ({}) => {
   const [alert, setAlert] = useState({ status: false, message: "" });
   const [filterApply, setFilterApply] = useState(false);
   const [fields, setFields] = useState([]);
-
-  const counter = useSelector((state => state));
-  const dispatch = useDispatch();
- console.log('counter',counter)
  
 
   const sendFilteredRequestHandler = async () => {
@@ -68,7 +63,6 @@ const BecomeGuide = ({}) => {
       {isLoading && <Loading />}
       <MuiTheme>
         <ToastAlert {...{ alert, setAlert }} />
-        {/* <Filterbox /> */}
         <DialogButton
           {...{
             sendFilteredRequestHandler,
@@ -79,7 +73,6 @@ const BecomeGuide = ({}) => {
           }}
         />
         <PersonsCard {...{ userData, alert }} />
-        {/* {filterApply ? ( */}
         <Paginator
           {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
         />
@@ -87,7 +80,6 @@ const BecomeGuide = ({}) => {
         <Paginator
           {...{ currentPage, setCurrentPage, totalItems, setIsLoading }}
         />
-        <button onClick={() => dispatch(deleteToken('accessToken set'))}>redux</button>
       </MuiTheme>
     </BasePage>
   );

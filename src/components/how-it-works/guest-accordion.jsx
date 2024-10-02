@@ -9,32 +9,26 @@ import {
 } from "@mui/material";
 import { ExpandMoreSharp } from "@mui/icons-material";
 import { useState } from "react";
-
+import { handleScrollGuest } from "./helpers/handleScrollGuest";
 const GuestAccordion = () => {
   const [isVisible, setIsVisible] = useState(false);
   const divref = useRef();
-  const handleScroll = () => {
-    if (divref.current) {
-      const rect = divref.current.getBoundingClientRect();
-      // console.log("rect", rect.top);
-      if ( rect.top <= 380) {
-        setIsVisible(true);
-      }
-    }
-  };
 
   useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () => handleScrollGuest(setIsVisible, divref));
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", () =>
+        handleScrollGuest(setIsVisible, divref)
+      );
     };
   }, []);
 
- 
   return (
     <div
       className={`${
-        isVisible ? "animate-fadeRight visible opacity-100" : "invisible opacity-0"
+        isVisible
+          ? "animate-fadeRight visible opacity-100"
+          : "invisible opacity-0"
       }`}
       ref={divref}
     >

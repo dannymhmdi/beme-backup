@@ -9,21 +9,18 @@ import {
 } from "@mui/material";
 import { ExpandMoreSharp } from "@mui/icons-material";
 import Link from "next/link";
+import { handleScrollGuide } from "./helpers/handleScrollGuide";
 const GuidAccordion = () => {
   const [isVisible, setIsVisible] = useState(false);
   const divref = useRef();
-  const handleScroll = () => {
-    if (divref.current) {
-      const rect = divref.current.getBoundingClientRect();
-      if (rect.top < 200) {
-        setIsVisible(true);
-      }
-    }
-  };
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () =>
+      handleScrollGuide(setIsVisible, divref)
+    );
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", () =>
+        handleScrollGuide(setIsVisible, divref)
+      );
     };
   }, []);
   return (

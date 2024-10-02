@@ -13,6 +13,7 @@ import Logout from "@mui/icons-material/Logout";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import ToastAlert from "@/components/snackbar/ToastAlert";
 
 const UserLabelCard = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const UserLabelCard = () => {
   const token = useSelector((state) => state);
   console.log("token Logout", token);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [alert, setAlert] = React.useState({});
+  const [alert, setAlert] = React.useState({status:'',message:''});
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,7 +38,9 @@ const UserLabelCard = () => {
       const response = await request.json();
       if (response.success) {
         window.location.reload();
+        return
       }
+      // setAlert(prev => ({...prev,message:'دوباره تلاش کنید'}))
     } catch (error) {
       throw new Error("falid to logout try again");
     }
@@ -45,6 +48,7 @@ const UserLabelCard = () => {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+        <ToastAlert {...{alert,setAlert}}/>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}

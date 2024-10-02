@@ -20,12 +20,10 @@ export function middleware(req) {
 
 // Specify the path(s) to apply the middleware
 export const config = {
-  matcher: ["/become-guide/:path*"],
+  matcher: ["/become-guide/:path*","/user-profile/:path*"],
 };
 
-// export const config = {
-//   matcher: ["/become-guide"],
-// };
+
 
 
 

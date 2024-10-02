@@ -2,7 +2,9 @@ import React from "react";
 
 const UserSkill = () => {
   return (
-    <div className="w-full md:w-6/12 lg:w-4/12" style={{ border: "2px solid" }}>
+    <div className="w-full md:w-6/12 lg:w-4/12"
+    //  style={{ border: "2px solid" }}
+     >
       <ul>
         <li>item1</li>
         <li>item2</li>

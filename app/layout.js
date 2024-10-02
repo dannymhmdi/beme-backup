@@ -7,6 +7,7 @@ import { MuiTheme } from "@/components/mui-theme";
 // import "tailwindcss/tailwind.css";
 import PageRouter from "@/components/page-router-switch/page-router";
 import StoreProvider from "@/redux/StoreProvider";
+import { StyledEngineProvider } from "@mui/material";
 // const lexend = Lexend({ subsets: ["latin"] });
 // const meta = metaData
 const vazirFont = localFont({
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         // style={{ backgroundColor: "#EFEFEF" }}
       >
         <StoreProvider>
+          <StyledEngineProvider injectFirst>
           <MuiTheme>
             {/* {
           path === '/login' ? <Login/>: <LandingLayout>{children}</LandingLayout>
@@ -35,6 +37,7 @@ export default function RootLayout({ children }) {
             {/* <LandingLayout>{children}</LandingLayout> */}
             <PageRouter>{children}</PageRouter>
           </MuiTheme>
+          </StyledEngineProvider>
         </StoreProvider>
       </body>
     </html>
