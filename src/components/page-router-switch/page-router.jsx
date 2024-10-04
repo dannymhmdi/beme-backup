@@ -10,7 +10,6 @@ import Loading from "app/loading";
 
 const PageRouter = ({ children }) => {
   const path = usePathname();
-  const [alert, setAlert] = useState({ status: false, message: "" });
   const isUserLogin = useSelector((state) => state.checkLogin.isUserLogin);
   const dispatch = useDispatch();
   const [loading,setLoading] = useState(true)
@@ -18,13 +17,15 @@ const PageRouter = ({ children }) => {
     fetch("http://localhost:3000/api/athenticate-loggedin-user")
       .then((res) => res.json())
       .then((res) => {
-        setLoading(false)
-        if (res.isUserLogin) {
-          dispatch(setLogin(res.isUserLogin));
+        // setLoading(false)
+        if (res.isUserLogin) {1
+          // dispatch(setLogin(res.isUserLogin));
+          dispatch(setLogin(res));
         } else {
           dispatch(setLogout(res.isUserLogin));
          path === '/become-guide' && setAlert((prev) => ({ ...prev, status: true, message: res.message }));
         }
+        setLoading(false)
       })
       .catch((err) => {
                 setAlert((prev) => ({
@@ -41,7 +42,6 @@ const PageRouter = ({ children }) => {
   return (
     <>
     {/* <button onClick={() => dispatch(setLogin(true))}>redux</button> */}
-      <ToastAlert {...{ alert, setAlert }} />
       {path === "/login" ? (
         <Login />
       ) : (

@@ -7,21 +7,17 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
-import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import ToastAlert from "@/components/snackbar/ToastAlert";
 
-const UserLabelCard = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state);
-  console.log("token Logout", token);
+const UserLabelCard = ({}) => {
+  const {isUserLogin,userId} = useSelector((state) => state.checkLogin);
+  console.log("token Logout", userId);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [alert, setAlert] = React.useState({status:'',message:''});
+  const [alert, setAlert] = React.useState({status:false,message:''});
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -103,7 +99,7 @@ const UserLabelCard = () => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Link href={'/user-profile'} className="no-underline text-current">
+        <Link href={`/user-profile/${userId}`} className="no-underline text-current">
           <MenuItem onClick={() => setAnchorEl(null)}>
             <Avatar /> پروفایل کاربر
           </MenuItem>

@@ -6,3 +6,4 @@ export const handleScrollGuide = (setIsVisible,divref) => {
       }
     }
   };
+

@@ -5,7 +5,9 @@ const checkLoginSlice = createSlice({
     initialState:{isUserLogin:false},
     reducers: {
         setLogin: (state,action) => {
-          state.isUserLogin = action.payload ;
+          const {isUserLogin,encodedData} = action.payload
+          state.isUserLogin = isUserLogin ;
+          state.userId = encodedData.userId
         },
         setLogout: (state,action) => {
           state.isUserLogin = action.payload;

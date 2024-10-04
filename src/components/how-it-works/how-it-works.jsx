@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { BasePage } from "../base-page";
 import GuestAccordion from './guest-accordion'

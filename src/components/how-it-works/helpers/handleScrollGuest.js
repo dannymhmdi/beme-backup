@@ -7,4 +7,3 @@ export const handleScrollGuest = (setIsVisible,divref) => {
       }
     }
   };
-  

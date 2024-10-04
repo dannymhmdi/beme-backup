@@ -3,7 +3,7 @@ import * as React from "react";
 import Snackbar from "@mui/material/Snackbar";
 import { Alert, Slide } from "@mui/material";
 
-function ToastAlert({ alert, setAlert, slideDirection, backgroundColor='rgb(244, 67, 54)'}) {
+function ToastAlert({ alert, setAlert, slideDirection}) {
   const {message,status,success} = alert
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
