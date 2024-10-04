@@ -10,12 +10,25 @@ import {
 import { ExpandMoreSharp } from "@mui/icons-material";
 import Link from "next/link";
 import { handleScrollGuide } from "./helpers/handleScrollGuide";
+import { AnimateOnScroll } from "./helpers/AnimateOnScroll";
 const GuidAccordion = () => {
   const [isVisible, setIsVisible] = useState(false);
   const divref = useRef();
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () =>
+  //     handleScrollGuide(setIsVisible, divref)
+  //   );
+  //   return () => {
+  //     window.removeEventListener("scroll", () =>
+  //       handleScrollGuide(setIsVisible, divref)
+  //     );
+  //   };
+  // }, []);
+
+
   useEffect(() => {
     window.addEventListener("scroll", () =>
-      handleScrollGuide(setIsVisible, divref)
+      AnimateOnScroll(setIsVisible, divref,200)
     );
     return () => {
       window.removeEventListener("scroll", () =>

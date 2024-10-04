@@ -10,12 +10,23 @@ import {
 import { ExpandMoreSharp } from "@mui/icons-material";
 import { useState } from "react";
 import { handleScrollGuest } from "./helpers/handleScrollGuest";
+import { AnimateOnScroll } from "./helpers/AnimateOnScroll";
 const GuestAccordion = () => {
   const [isVisible, setIsVisible] = useState(false);
   const divref = useRef();
 
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => handleScrollGuest(setIsVisible, divref));
+  //   return () => {
+  //     window.removeEventListener("scroll", () =>
+  //       handleScrollGuest(setIsVisible, divref)
+  //     );
+  //   };
+  // }, []);
+
+
   useEffect(() => {
-    window.addEventListener("scroll", () => handleScrollGuest(setIsVisible, divref));
+    window.addEventListener("scroll", () => AnimateOnScroll(setIsVisible, divref,380));
     return () => {
       window.removeEventListener("scroll", () =>
         handleScrollGuest(setIsVisible, divref)
