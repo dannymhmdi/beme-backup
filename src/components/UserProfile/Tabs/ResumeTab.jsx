@@ -10,7 +10,7 @@ const ResumeTab = () => {
   };
   console.log("person", Object.entries(person));
   return (
-    <div className="flex flex-row flex-wrap justify-between w-full py-2">
+    <div className="flex flex-row flex-wrap justify-between w-full py-2 animate-fadeRight">
       {(Object.entries(person) || []).map((info, index) => (
         <RowInfo key={index} {...{ info }} />
       ))}
