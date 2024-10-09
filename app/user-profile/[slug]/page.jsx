@@ -17,14 +17,14 @@ const SingleUserProfile = async ({ params }) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body:JSON.stringify({userId}),
-    cache:'no-store'
+    body: JSON.stringify({ userId }),
+    cache: "no-store",
   });
-  const userData = await response.json();
-  console.log('userData',userData)
+  const json = await response.json();
+  const userData = json.data;
+  console.log("userDatas", json);
 
-  return <UserProfile {...{userData}}/>;
+  return <UserProfile {...{ userData }} />;
 };
 
 export default SingleUserProfile;
- 

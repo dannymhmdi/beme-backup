@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 
 const UserProfile = ({userData}) => {
   const [activeTab, setActiveTab] = useState("اطلاعات کاربر");
-  const [isEditActive, setIsEditActive] = useState(true);
+  const [isEditActive, setIsEditActive] = useState(false);
   // const [userData, setUserData] = useState({});
   // const params = useParams()
   // console.log('params',params)
@@ -29,7 +29,7 @@ const UserProfile = ({userData}) => {
   return (
     <BasePage fixed={true} className={" bg-white px-0"}>
       <Card className="flex flex-row flex-wrap w-full animate-fadeRight">
-        <UserImage {...{ activeTab, setActiveTab }} />
+        <UserImage {...{ activeTab, setActiveTab,setIsEditActive }} />
         <UserSkill />
         <UserInfo {...{ activeTab, setActiveTab,userData ,isEditActive, setIsEditActive }} />
       </Card>
