@@ -1,33 +1,19 @@
 "use client";
-import { Autocomplete, Chip, MenuItem, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
+import Fields from "../inputs/Fields";
 
 const InfoTabsInputs = ({
   field,
   isEditActive,
   inputData,
+  setInputData,
   inputChangeHandler,
+  isNatCodeValid,
+  isTelValid
 }) => {
   const [label, value] = [field[0], field[1] ? field[1] : ""];
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [inputValue, setInputValue] = useState('ddd');
-
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    setInputValue(value);
-  };
-
-  const handleSelect = (event) => {
-    const { value } = event.target;
-    setSelectedOptions((prevOptions) => [...prevOptions, value]);
-    setInputValue('');
-  };
-
-  const handleDelete = (option) => {
-    setSelectedOptions((prevOptions) => prevOptions.filter((o) => o !== option));
-  };
-  // console.log('inputData',typeof(inputData.tel))
+console.log('isNatCodeValid',isNatCodeValid)
   let input;
   switch (label) {
     case "email":
@@ -35,7 +21,7 @@ const InfoTabsInputs = ({
         <TextField
           type="email"
           variant="outlined"
-          className="h-1s"
+          className="h-1s w-full"
           size="small"
           margin="dense"
           name={label}
@@ -52,7 +38,7 @@ const InfoTabsInputs = ({
         <TextField
           type="text"
           variant="outlined"
-          className="h-1s"
+          className="h-1s w-full"
           size="small"
           margin="dense"
           name={label}
@@ -69,12 +55,16 @@ const InfoTabsInputs = ({
         <TextField
           type="text"
           variant="outlined"
-          className="h-1s"
+          className="h-1s w-full"
           size="small"
           margin="dense"
           name={label}
+          required
           disabled={!isEditActive}
+          placeholder="0-"
           id={label}
+          error={!!isTelValid}
+          helperText={isTelValid}
           label={label}
           onChange={inputChangeHandler}
           value={value}
@@ -86,12 +76,15 @@ const InfoTabsInputs = ({
         <TextField
           type="text"
           variant="outlined"
-          className="h-1s"
+          className="h-1s w-full"
           size="small"
           margin="dense"
           name={label}
           disabled={!isEditActive}
+          required
           id={label}
+          error={!!isNatCodeValid}
+          helperText={isNatCodeValid}
           label={label}
           onChange={inputChangeHandler}
           value={value}
@@ -103,7 +96,7 @@ const InfoTabsInputs = ({
         <TextField
           type="text"
           variant="outlined"
-          className="h-1s"
+          className="h-1s w-full"
           size="small"
           margin="dense"
           name={label}
@@ -115,24 +108,9 @@ const InfoTabsInputs = ({
         />
       );
       break;
-      case "fields":
-        input = (
-          <Autocomplete
-          multiple
-          options={options}
-          value={selectedOptions}
-          onChange={handleSelect}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="outlined"
-              label="Select multiple options"
-              placeholder="Choose..."
-            />
-          )}
-        />
-        );
-        break;
+    case "fields":
+      input = <Fields {...{isEditActive,setInputData,label,value}}/>
+      break;
     default:
       break;
   }
@@ -144,19 +122,6 @@ const InfoTabsInputs = ({
       >
         {label}
       </label>
-      {/* <TextField
-        type="text"
-        variant="outlined"
-        className="h-1s"
-        size="small"
-        margin="dense"
-        name={label}
-        disabled={!isEditActive}
-        id={label}
-        label={label}
-        onChange={inputChangeHandler}
-        value={value}
-      /> */}
       {input}
     </div>
   );
@@ -164,4 +129,3 @@ const InfoTabsInputs = ({
 
 export default InfoTabsInputs;
 
-const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];

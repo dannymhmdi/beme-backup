@@ -14,6 +14,10 @@ const InfoTab = ({ userData, isEditActive, setIsEditActive }) => {
   const inputChangeHandler = (e) => {
     setInputData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  const [natCodeRegex,telRegex] = [/^\d{10}$/, /^[1-9]\d{9}$/]
+  const isNatCodeValid = natCodeRegex.test(inputData.natcode)?null:inputData.natcode.length ? 'کدملی باید 10 رقم باشد':null;
+  const isTelValid = telRegex.test(inputData.tel)?null:inputData.natcode.length ? 'شماره تلفن را درست وارد کنید':null;
+  console.log('inputData',inputData)
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -71,6 +75,8 @@ const InfoTab = ({ userData, isEditActive, setIsEditActive }) => {
                 inputData,
                 setInputData,
                 inputChangeHandler,
+                isNatCodeValid,
+                isTelValid
               }}
             />
           </div>
@@ -80,6 +86,7 @@ const InfoTab = ({ userData, isEditActive, setIsEditActive }) => {
             type="submit"
             variant="contained"
             color="success"
+            disabled={!(natCodeRegex.test(inputData.natcode) && telRegex.test(inputData.tel))}
             className="mt-2 bg-teal-600s hover:bg-teal-800s transition-all duration-150 ease-linear"
           >
             ثبت تغییرات
@@ -91,6 +98,21 @@ const InfoTab = ({ userData, isEditActive, setIsEditActive }) => {
 };
 
 export default InfoTab;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const RowInfo = ({ info }) => {
   return (
@@ -116,6 +138,8 @@ const RowInfo = ({ info }) => {
     </>
   );
 };
+
+
 
 //old version UI
 
