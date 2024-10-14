@@ -24,7 +24,7 @@ const SingleUserProfile = async ({ params }) => {
   const userData = json.data;
   console.log("userDatas", json);
 
-  return <UserProfile {...{ userData }} />;
+  return <UserProfile {...{ userData ,json}} />;
 };
 
 export default SingleUserProfile;

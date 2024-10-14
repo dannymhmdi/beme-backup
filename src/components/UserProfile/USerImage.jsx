@@ -2,7 +2,8 @@
 import { Avatar, Button, Divider, Typography } from "@mui/material";
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
-const UserImage = ({ activeTab, setActiveTab, setIsEditActive }) => {
+import EditOffIcon from '@mui/icons-material/EditOff';
+const UserImage = ({ activeTab, setActiveTab, isEditActive,setIsEditActive }) => {
   const onTabChange = (e) => {
     setActiveTab(e.target.textContent);
   };
@@ -65,9 +66,9 @@ const UserImage = ({ activeTab, setActiveTab, setIsEditActive }) => {
         <Button
           variant="contained"
           className="bg-teal-500 hover:bg-teal-700"
-          onClick={() => setIsEditActive(true)}
+          onClick={() => setIsEditActive(prev => !prev)}
         >
-          <EditIcon />
+         {isEditActive ? <EditIcon />:<EditOffIcon/>}  
         </Button>
       </div>
     </div>

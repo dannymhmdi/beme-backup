@@ -8,7 +8,6 @@ const ResumeTab = () => {
     phone: "09127275236",
     profession: "full-stack developer",
   };
-  console.log("person", Object.entries(person));
   return (
     <div className="flex flex-row flex-wrap justify-between w-full py-2 animate-fadeRight">
       {(Object.entries(person) || []).map((info, index) => (

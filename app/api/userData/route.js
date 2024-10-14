@@ -26,11 +26,8 @@ export const POST = async (req, res) => {
       client.release();
       const { username, email, image, fields, tel, isadmin, natcode } =
         fetch1?.rows?.[0];
-      const findFields = names.filter((field) => fields.indexOf(field.value) >= 0);
-    //  const serializedFields = findFields.map(v => ({
-    //   value: v.value,
-    //   label:v.label
-    //  }))
+      const findFields = names.filter((field) => fields?.indexOf(field.value) >= 0);
+
       return NextResponse.json({
         data: { username, email, image, fields:findFields, tel, isadmin, natcode },
         status: true,
@@ -69,7 +66,7 @@ export const POST = async (req, res) => {
     return NextResponse.json({
       status: false,
       message: "خطای سرور مجدد تلاش کنید",
-      error: error,
+      // error
     });
   }
 };

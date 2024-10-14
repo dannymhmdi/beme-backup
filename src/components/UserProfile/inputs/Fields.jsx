@@ -1,9 +1,9 @@
-import { names } from "@/dictionaries/fields-name";
+import { inputLabel, names } from "@/dictionaries/fields-name";
 import { Autocomplete, Checkbox, Chip, TextField } from "@mui/material";
 import React, { useState } from "react";
 
 const Fields = ({ isEditActive, setInputData, label, value }) => {
-  const [selectedOptions, setSelectedOptions] = useState(value.map(v => ({value:v.value,label:v.label})));
+  const [selectedOptions, setSelectedOptions] = useState((value || []).map(v => ({value:v.value,label:v.label})));
   const handleSelect = (e, newValue) => {
     setSelectedOptions(newValue);
     setInputData((prev) => ({ ...prev, fields: newValue }));
@@ -50,7 +50,7 @@ const Fields = ({ isEditActive, setInputData, label, value }) => {
       }}
       style={{ width: "100%" }}
       renderInput={(params) => {
-        return <TextField {...params} size="small" label={label} />;
+        return <TextField {...params} size="small" label={inputLabel[label]} />;
       }}
     />
   );

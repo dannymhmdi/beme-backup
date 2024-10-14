@@ -2,7 +2,7 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import Fields from "../inputs/Fields";
-
+import { inputLabel } from "@/dictionaries/fields-name";
 const InfoTabsInputs = ({
   field,
   isEditActive,
@@ -10,10 +10,10 @@ const InfoTabsInputs = ({
   setInputData,
   inputChangeHandler,
   isNatCodeValid,
-  isTelValid
+  isTelValid,
 }) => {
   const [label, value] = [field[0], field[1] ? field[1] : ""];
-console.log('isNatCodeValid',isNatCodeValid)
+  console.log("isNatCodeValid", isNatCodeValid);
   let input;
   switch (label) {
     case "email":
@@ -21,13 +21,13 @@ console.log('isNatCodeValid',isNatCodeValid)
         <TextField
           type="email"
           variant="outlined"
-          className="h-1s w-full"
+          className="w-full"
           size="small"
           margin="dense"
           name={label}
           disabled={!isEditActive}
           id={label}
-          label={label}
+          label={inputLabel[label]}
           onChange={inputChangeHandler}
           value={value}
         />
@@ -44,7 +44,7 @@ console.log('isNatCodeValid',isNatCodeValid)
           name={label}
           disabled={!isEditActive}
           id={label}
-          label={label}
+          label={inputLabel[label]}
           onChange={inputChangeHandler}
           value={value}
         />
@@ -65,7 +65,7 @@ console.log('isNatCodeValid',isNatCodeValid)
           id={label}
           error={!!isTelValid}
           helperText={isTelValid}
-          label={label}
+          label={inputLabel[label]}
           onChange={inputChangeHandler}
           value={value}
         />
@@ -85,7 +85,7 @@ console.log('isNatCodeValid',isNatCodeValid)
           id={label}
           error={!!isNatCodeValid}
           helperText={isNatCodeValid}
-          label={label}
+          label={inputLabel[label]}
           onChange={inputChangeHandler}
           value={value}
         />
@@ -102,14 +102,14 @@ console.log('isNatCodeValid',isNatCodeValid)
           name={label}
           disabled={!isEditActive}
           id={label}
-          label={label}
+          label={inputLabel[label]}
           onChange={inputChangeHandler}
           value={value}
         />
       );
       break;
     case "fields":
-      input = <Fields {...{isEditActive,setInputData,label,value}}/>
+      input = <Fields {...{ isEditActive, setInputData, label, value }} />;
       break;
     default:
       break;
@@ -128,4 +128,3 @@ console.log('isNatCodeValid',isNatCodeValid)
 };
 
 export default InfoTabsInputs;
-

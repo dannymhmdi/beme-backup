@@ -12,4 +12,11 @@ export const names = [
     { value: 10, label: "IT" },
   ]
 
- 
+ export const inputLabel = {
+  username:'نام کاربری',
+  email:'ایمیل',
+  natcode:'کدملی',
+  fields:'زمینه فعالیت',
+  tel:'شماره موبایل',
+  isadmin:'ادمین'
+ }
