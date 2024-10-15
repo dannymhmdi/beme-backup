@@ -33,7 +33,7 @@ const InfoTab = ({ userData, isEditActive, setIsEditActive }) => {
     e.preventDefault();
     setLoading(true);
     const body = { inputData, userId };
-    submitChanges({ body, setLoading, setAlert, setIsEditActive });
+   await submitChanges({ body, setLoading, setAlert, setIsEditActive });
 
     // try {
     //   const response = await fetch(`http://localhost:3000/api/userData`, {

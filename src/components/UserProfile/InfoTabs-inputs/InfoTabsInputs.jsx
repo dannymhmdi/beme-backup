@@ -1,8 +1,9 @@
 "use client";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import Fields from "../inputs/Fields";
 import { inputLabel } from "@/dictionaries/fields-name";
+import ImageInput from "../inputs/image";
 const InfoTabsInputs = ({
   field,
   isEditActive,
@@ -13,7 +14,12 @@ const InfoTabsInputs = ({
   isTelValid,
 }) => {
   const [label, value] = [field[0], field[1] ? field[1] : ""];
-  console.log("isNatCodeValid", isNatCodeValid);
+  const [file, setFile] = useState(null);
+  const fileChange = (e) => {
+    setFile(e.target.files[0]);
+    console.log("image", e.target.files[0], e.target.name);
+  };
+
   let input;
   switch (label) {
     case "email":
@@ -31,6 +37,11 @@ const InfoTabsInputs = ({
           onChange={inputChangeHandler}
           value={value}
         />
+      );
+      break;
+    case "image":
+      input = (
+        <ImageInput {...{ label, isEditActive }} />
       );
       break;
     case "username":
@@ -120,7 +131,7 @@ const InfoTabsInputs = ({
         htmlFor={label}
         className="block text-teal-600 hover:text-teal-800 transition-all duration-100 ease-linear"
       >
-        {label}
+        {inputLabel[label]}
       </label>
       {input}
     </div>

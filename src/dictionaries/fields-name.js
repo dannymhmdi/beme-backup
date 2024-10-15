@@ -18,5 +18,6 @@ export const names = [
   natcode:'کدملی',
   fields:'زمینه فعالیت',
   tel:'شماره موبایل',
-  isadmin:'ادمین'
+  isadmin:'ادمین',
+  image:'عکس پروفایل'
  }
