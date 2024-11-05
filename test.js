@@ -1,12 +1,10 @@
-const person = {
-  name: "Daniel",
-  fname: "Mohammadi",
+const computeFactorial = (n) => {
+  if (n <= 0) return 1;
+  return n * computeFactorial(n - 1);
 };
 
-const instancePerson = person;
-instancePerson.age = 25
-console.log(person,instancePerson)
-let a = 'Daniel'
-let b = a
-b= 'Hesam'
-console.log(a)
+let name = 'Daniel'
+let n = name.replace('D','d')
+
+console.log(computeFactorial(5))
+console.log('name',name)
